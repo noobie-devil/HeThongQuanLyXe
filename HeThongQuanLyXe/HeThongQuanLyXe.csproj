@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACABD76E-A0CE-4AC3-B211-9C38598AB942}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HeThongQuanLyXe</RootNamespace>
+    <AssemblyName>HeThongQuanLyXe</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\Service_DAO.cs" />
+    <Compile Include="DAO\TypeOfVehicle_DAO.cs" />
+    <Compile Include="Components\Service\fDGVListPriceOfServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Service\fDGVListPriceOfServices.Designer.cs">
+      <DependentUpon>fDGVListPriceOfServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Service\fDGVListServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Service\fDGVListServices.Designer.cs">
+      <DependentUpon>fDGVListServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\dbHeThongQuanLyXe.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbHeThongQuanLyXe.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\Person.cs" />
+    <Compile Include="DTO\Service.cs" />
+    <Compile Include="ElipseControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="fAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAddCustomer.Designer.cs">
+      <DependentUpon>fAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Vehicle\fAddTypeOfVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Vehicle\fAddTypeOfVehicle.Designer.cs">
+      <DependentUpon>fAddTypeOfVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMainMenu.Designer.cs">
+      <DependentUpon>fMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Service\fManageService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Service\fManageService.Designer.cs">
+      <DependentUpon>fManageService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Service\fDGVListPriceOfServices.resx">
+      <DependentUpon>fDGVListPriceOfServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Service\fDGVListServices.resx">
+      <DependentUpon>fDGVListServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fAddCustomer.resx">
+      <DependentUpon>fAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Vehicle\fAddTypeOfVehicle.resx">
+      <DependentUpon>fAddTypeOfVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMainMenu.resx">
+      <DependentUpon>fMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Service\fManageService.resx">
+      <DependentUpon>fManageService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="DTO\dbHeThongQuanLyXe.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbHeThongQuanLyXe.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DTO\dbHeThongQuanLyXe.dbml.layout">
+      <DependentUpon>dbHeThongQuanLyXe.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BUS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

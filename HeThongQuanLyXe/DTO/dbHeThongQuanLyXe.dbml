@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HeThongQuanLyXe" Class="dbHeThongQuanLyXeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-NTGO6J9;Initial Catalog=HeThongQuanLyXe;Integrated Security=True" SettingsObjectName="HeThongQuanLyXe.Properties.Settings" SettingsPropertyName="HeThongQuanLyXeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BAIXE" Member="BAIXEs">
+    <Type Name="BAIXE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoaiXe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ChoTrong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="LOAIXE_BAIXE" Member="LOAIXE1" ThisKey="LoaiXe" OtherKey="MaLoai" Type="LOAIXE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.XE" Member="XEs">
+    <Type Name="XE">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoaiXe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HieuXe" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="BangSo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="XE_CTHD" Member="CTHDs" ThisKey="ID" OtherKey="MaXe" Type="CTHD" />
+      <Association Name="KHACHHANG_XE" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="LOAIXE_XE" Member="LOAIXE1" ThisKey="LoaiXe" OtherKey="MaLoai" Type="LOAIXE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHD" Member="CTHDs">
+    <Type Name="CTHD">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="MaXe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Option]" Member="Option" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TimeEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="XE_CTHD" Member="XE" ThisKey="MaXe" OtherKey="ID" Type="XE" IsForeignKey="true" />
+      <Association Name="HOPDONG_CTHD" Member="HOPDONG" ThisKey="MaHD" OtherKey="ID" Type="HOPDONG" IsForeignKey="true" />
+      <Association Name="OPTION_DICHVU_CTHD" Member="OPTION_DICHVU" ThisKey="Option" OtherKey="ID" Type="OPTION_DICHVU" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DICHVU" Member="DICHVUs">
+    <Type Name="DICHVU">
+      <Column Name="MaDV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="DICHVU_HOPDONG" Member="HOPDONGs" ThisKey="MaDV" OtherKey="MaDV" Type="HOPDONG" />
+      <Association Name="DICHVU_BANGGIADICHVU" Member="BANGGIADICHVUs" ThisKey="MaDV" OtherKey="MaDV" Type="BANGGIADICHVU" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOPDONG" Member="HOPDONGs">
+    <Type Name="HOPDONG">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaDV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_At" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HOPDONG_CTHD" Member="CTHDs" ThisKey="ID" OtherKey="MaHD" Type="CTHD" />
+      <Association Name="DICHVU_HOPDONG" Member="DICHVU" ThisKey="MaDV" OtherKey="MaDV" Type="DICHVU" IsForeignKey="true" />
+      <Association Name="KHACHHANG_HOPDONG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="KHACHHANG_XE" Member="XEs" ThisKey="MaKH" OtherKey="MaKH" Type="XE" />
+      <Association Name="KHACHHANG_HOPDONG" Member="HOPDONGs" ThisKey="MaKH" OtherKey="MaKH" Type="HOPDONG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAIXE" Member="LOAIXEs">
+    <Type Name="LOAIXE">
+      <Column Name="MaLoai" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="LOAIXE_BAIXE" Member="BAIXEs" ThisKey="MaLoai" OtherKey="LoaiXe" Type="BAIXE" />
+      <Association Name="LOAIXE_XE" Member="XEs" ThisKey="MaLoai" OtherKey="LoaiXe" Type="XE" />
+      <Association Name="LOAIXE_BANGGIADICHVU" Member="BANGGIADICHVUs" ThisKey="MaLoai" OtherKey="LoaiXe" Type="BANGGIADICHVU" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OPTION_DICHVU" Member="OPTION_DICHVUs">
+    <Type Name="OPTION_DICHVU">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Option]" Member="Option" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="OPTION_DICHVU_CTHD" Member="CTHDs" ThisKey="ID" OtherKey="Option" Type="CTHD" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BANGGIADICHVU" Member="BANGGIADICHVUs">
+    <Type Name="BANGGIADICHVU">
+      <Column Name="MaDV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoaiXe" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TheoGio" Type="System.Decimal" DbType="Money NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="LOAIXE_BANGGIADICHVU" Member="LOAIXE1" ThisKey="LoaiXe" OtherKey="MaLoai" Type="LOAIXE" IsForeignKey="true" />
+      <Association Name="DICHVU_BANGGIADICHVU" Member="DICHVU" ThisKey="MaDV" OtherKey="MaDV" Type="DICHVU" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
